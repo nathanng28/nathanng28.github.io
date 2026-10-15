@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws & Whiskers | Dogs vs. Cats</title>
+  <style>
+    :root {
+      --dog-accent: #e67e22;
+      --cat-accent: #9b59b6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(135deg, #fff3e0 0%, #f3e5f5 100%);
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-body h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .dog-title { color: var(--dog-accent); }
+    .cat-title { color: var(--cat-accent); }
+
+    .fact-list {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+    }
+
+    .fact-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Interactive Vote Box */
+    .vote-box {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .vote-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .btn-dog {
+      background-color: var(--dog-accent);
+      color: white;
+    }
+
+    .btn-cat {
+      background-color: var(--cat-accent);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #718096;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🐶 Paws & Whiskers 🐱</h1>
+    <p>Exploring the wonderful worlds of dogs and cats.</p>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <!-- Dog Card -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="Cute Dog" />
+        <div class="card-body">
+          <h2 class="dog-title">The Loyal Canine</h2>
+          <p>Dogs are known as "man's best friend" for their incredible loyalty, playful nature, and emotional intelligence.</p>
+          <ul class="fact-list">
+            <li><strong>Sense of Smell:</strong> Up to 100,000 times more sensitive than human noses.</li>
+            <li><strong>Communication:</strong> Tail wags can mean happiness, excitement, or caution depending on direction and speed.</li>
+            <li><strong>Activity:</strong> Most breeds thrive on regular outdoor exercise and interactive play.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Cat Card -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80" alt="Cute Cat" />
+        <div class="card-body">
+          <h2 class="cat-title">The Curious Feline</h2>
+          <p>Cats are independent, agile, and affectionate companions who master the art of stealth and cozy napping.</p>
+          <ul class="fact-list">
+            <li><strong>Purring Power:</strong> Cat purrs vibrate at frequencies (20-140 Hz) known to aid tissue and bone healing.</li>
+            <li><strong>Flexibility:</strong> Their flexible spine and lack of a rigid collarbone allow them to fit into tight spaces.</li>
+            <li><strong>Sleep Habits:</strong> Cats spend roughly 70% of their lives sleeping or resting.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <!-- Interactive Voting Section -->
+    <section class="vote-box">
+      <h2>Which Team Are You On?</h2>
+      <p>Cast your vote below!</p>
+      <div class="vote-buttons">
+        <button class="btn-dog" onclick="vote('dog')">Vote Dog 🐕 (<span id="dog-count">0</span>)</button>
+        <button class="btn-cat" onclick="vote('cat')">Vote Cat 🐈 (<span id="cat-count">0</span>)</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Made with ❤️ for pet lovers everywhere. Hosted on GitHub Pages.</p>
+  </footer>
+
+  <script>
+    let dogVotes = 0;
+    let catVotes = 0;
+
+    function vote(animal) {
+      if (animal === 'dog') {
+        dogVotes++;
+        document.getElementById('dog-count').textContent = dogVotes;
+      } else {
+        catVotes++;
+        document.getElementById('cat-count').textContent = catVotes;
+      }
+    }
+  </script>
+</body>
+</html>
