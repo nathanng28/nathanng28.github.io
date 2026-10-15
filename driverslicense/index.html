@@ -1,1 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMV: The Slay Edition 🪪🚗</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #fcf8ec;
+      background-image: radial-gradient(#ff007a 1px, transparent 1px), radial-gradient(#00f0ff 1px, #fcf8ec 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+    }
+    h1, h2, h3, .brutal-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Neo-Brutalist Hard Shadows */
+    .hard-shadow {
+      box-shadow: 6px 6px 0px #000;
+    }
+    .hard-shadow-sm {
+      box-shadow: 3px 3px 0px #000;
+    }
+    .hard-shadow-lg {
+      box-shadow: 10px 10px 0px #000;
+    }
+    .btn-press:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0px #000;
+    }
+    /* Holographic Foil Tag */
+    .holo-badge {
+      background: linear-gradient(135deg, #ff007a, #00f0ff, #ffe600, #ff007a);
+      background-size: 300% 300%;
+      animation: holo 5s ease infinite;
+    }
+    @keyframes holo {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body class="text-black min-h-screen p-4 md:p-8 flex flex-col items-center">
+
+  <!-- TOP TICKER -->
+  <div class="w-full max-w-6xl bg-[#ffe600] border-4 border-black hard-shadow-sm py-2 px-4 mb-8 font-black uppercase text-xs md:text-sm tracking-wider overflow-hidden whitespace-nowrap">
+    🚨 WARNING: PARALLEL PARKING IS RIGGED • PASSENGER PRINCESS ERA: TERMINATED • 100% NO CAP LICENSING • CERTIFIED WHIP OPERATOR 🚨
+  </div>
+
+  <!-- HEADER -->
+  <header class="w-full max-w-6xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div>
+      <div class="inline-block bg-[#00f0ff] border-3 border-black border-2 font-bold px-3 py-1 mb-2 hard-shadow-sm rotate-[-2deg]">
+        DEPARTMENT OF MOTOR VEHICLES (TAYLOR'S VERSION)
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight">
+        License to Whip <span class="text-[#ff007a] underline decoration-wavy">Legally</span>
+      </h1>
+      <p class="text-zinc-700 font-bold mt-1 text-sm md:text-base">
+        Because taking the bus ruins the fit. Fill out the form, generate your card, and pray you don't curb your rims.
+      </p>
+    </div>
+    
+    <div class="flex gap-2">
+      <span class="bg-[#ff5722] text-white border-2 border-black font-black px-4 py-2 rotate-2 hard-shadow-sm">
+        🔥 0 DUIs (YET)
+      </span>
+      <span class="bg-[#9c27b0] text-white border-2 border-black font-black px-4 py-2 -rotate-3 hard-shadow-sm">
+        💅 IT'S GIVING LEGAL
+      </span>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (SPLIT: FORM vs LIVE CARD PREVIEW) -->
+  <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+    <!-- LEFT: REGISTRATION FORM (7 COLS) -->
+    <section class="lg:col-span-7 bg-white border-4 border-black p-6 md:p-8 hard-shadow-lg">
+      <div class="flex items-center justify-between border-b-4 border-black pb-4 mb-6">
+        <h2 class="text-2xl font-black uppercase">Phase 1: Government Intel</h2>
+        <span class="text-xs bg-black text-white px-2 py-1 font-bold">100% NOT A FED</span>
+      </div>
+
+      <form id="dmv-form" class="space-y-6" onsubmit="event.preventDefault(); submitForm();">
+        <!-- Name -->
+        <div>
+          <label class="block font-black text-sm uppercase mb-1">Government Name (Don't lie, unc)</label>
+          <input 
+            type="text" 
+            id="input-name"
+            placeholder="e.g. Kai Cenat / Olivia Rodrigo" 
+            class="w-full border-3 border-black border-2 p-3 font-bold bg-[#f3f4f6] focus:bg-[#ffe600] outline-none transition" 
+            required 
+            oninput="updatePreview()"
+          />
+        </div>
+
+        <!-- Nickname & DOB -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-black text-sm uppercase mb-1">Street Alias / Handle</label>
+            <input 
+              type="text" 
+              id="input-handle"
+              placeholder="@drift_queen" 
+              class="w-full border-2 border-black p-3 font-bold bg-[#f3f4f6] focus:bg-[#00f0ff] outline-none transition"
+              oninput="updatePreview()"
+            />
+          </div>
+          <div>
+            <label class="block font-black text-sm uppercase mb-1">Date of Spawn (DOB)</label>
+            <input 
+              type="date" 
+              id="input-dob"
+              class="w-full border-2 border-black p-3 font-bold bg-[#f3f4f6] focus:bg-[#ff007a] focus:text-white outline-none transition"
+              oninput="updatePreview()"
+            />
+          </div>
+        </div>
+
+        <!-- Height & Delusion check -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-black text-sm uppercase mb-1">Real Height</label>
+            <select id="input-height" class="w-full border-2 border-black p-3 font-bold bg-[#f3f4f6] outline-none" onchange="updatePreview()">
+              <option value="5'2 (pocket prince)">5'2 (pocket prince)</option>
+              <option value="5'7 (5'10 in Air Forces)">5'7 (5'10 in Air Forces)</option>
+              <option value="5'11 (Claiming 6ft)">5'11 (Claiming 6ft on Hinge)</option>
+              <option value="6'3 (Certified Gigachad)">6'3 (Certified Gigachad)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-black text-sm uppercase mb-1">Primary Vehicle Archetype</label>
+            <select id="input-whip" class="w-full border-2 border-black p-3 font-bold bg-[#f3f4f6] outline-none" onchange="updatePreview()">
+              <option value="2004 Honda Civic with bad muffler">2004 Honda Civic (Loud as hell)</option>
+              <option value="Mom's Minivan (AUX plugged)">Mom's Minivan (AUX King)</option>
+              <option value="Tesla Model 3 with fart noise ON">Tesla (Can't even drive manual)</option>
+              <option value="Lime Scooter Demon">Lime Scooter Menace</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Mugshot Upload -->
+        <div>
+          <label class="block font-black text-sm uppercase mb-1">Upload Face Card (Will not decline)</label>
+          <div class="border-2 border-dashed border-black p-4 text-center bg-zinc-50 hover:bg-yellow-50 cursor-pointer relative">
+            <input type="file" id="input-pic" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImage(event)">
+            <p class="font-bold text-sm">📸 Drop a spicy selfie or click here</p>
+            <p class="text-xs text-zinc-500 mt-1">Selfies taken at 3AM in front of 7-Eleven prioritized</p>
+          </div>
+        </div>
+
+        <!-- Vibe Checklist -->
+        <div class="space-y-2 border-2 border-black p-4 bg-[#f9fafb]">
+          <p class="font-black text-sm uppercase">Road Attunement Verification:</p>
+          <label class="flex items-center gap-2 font-bold text-sm cursor-pointer">
+            <input type="checkbox" id="check-princess" class="w-5 h-5 accent-black border-2 border-black" checked onchange="updatePreview()">
+            I promise not to scream when merging onto the highway
+          </label>
+          <label class="flex items-center gap-2 font-bold text-sm cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-black border-2 border-black" checked>
+            I acknowledge that hitting curbs builds character
+          </label>
+          <label class="flex items-center gap-2 font-bold text-sm cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-black border-2 border-black">
+            Organ Donor: Take whatever isn't fried by iced matcha
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-[#ff007a] text-white border-4 border-black py-4 font-black text-xl uppercase tracking-wider hard-shadow hover:bg-[#e0006c] btn-press transition">
+          🚀 Mint My Official Whip License
+        </button>
+      </form>
+    </section>
+
+    <!-- RIGHT: LIVE PREVIEW & STICKERS (5 COLS) -->
+    <aside class="lg:col-span-5 flex flex-col items-center lg:sticky lg:top-8 gap-6">
+      
+      <!-- CARD PREVIEW -->
+      <div class="w-full bg-[#ffe600] border-4 border-black p-5 hard-shadow-lg relative overflow-hidden">
+        <!-- Hologram badge -->
+        <div class="absolute -top-12 -right-12 w-28 h-28 holo-badge rounded-full border-4 border-black rotate-12 flex items-end justify-center pb-2 text-[10px] font-black tracking-tighter">
+          OFFICIAL SLAY
+        </div>
+
+        <!-- Top Header of Card -->
+        <div class="flex items-center justify-between border-b-2 border-black pb-2 mb-4">
+          <div>
+            <h3 class="font-black text-lg tracking-tighter uppercase leading-none">Vibe State Authority</h3>
+            <span class="text-[10px] font-bold text-zinc-800 uppercase tracking-widest">Driver Class: Menace (Class D)</span>
+          </div>
+          <span class="text-2xl mr-8">💅</span>
+        </div>
+
+        <!-- License Body -->
+        <div class="grid grid-cols-12 gap-3 items-center">
+          <!-- Mugshot -->
+          <div class="col-span-5 border-3 border-2 border-black bg-white aspect-[3/4] overflow-hidden relative flex items-center justify-center">
+            <img id="card-mugshot" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Mugshot" class="w-full h-full object-cover">
+            <span class="absolute bottom-1 bg-black text-white text-[8px] font-black px-1 uppercase">FACE CARD</span>
+          </div>
+
+          <!-- License Specs -->
+          <div class="col-span-7 space-y-1 text-xs">
+            <div>
+              <p class="text-[9px] font-black uppercase text-zinc-600">Full Legal Name</p>
+              <p id="card-name" class="font-black text-sm uppercase truncate">OLIVIA "DRIFT" RODRIGO</p>
+            </div>
+            <div>
+              <p class="text-[9px] font-black uppercase text-zinc-600">Tag / Handle</p>
+              <p id="card-handle" class="font-bold text-zinc-800 truncate">@sour_roads</p>
+            </div>
+            <div class="flex justify-between">
+              <div>
+                <p class="text-[9px] font-black uppercase text-zinc-600">DOB</p>
+                <p id="card-dob" class="font-black">2004-02-20</p>
+              </div>
+              <div>
+                <p class="text-[9px] font-black uppercase text-zinc-600">Sex</p>
+                <p class="font-black">SWAG</p>
+              </div>
+            </div>
+            <div>
+              <p class="text-[9px] font-black uppercase text-zinc-600">Current Whip</p>
+              <p id="card-whip" class="font-bold truncate text-[11px]">2004 Honda Civic</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barcode & Footer info -->
+        <div class="mt-4 pt-3 border-t-2 border-black flex items-center justify-between">
+          <div class="font-mono text-[9px] tracking-widest">
+            ||| | ||||| || |||||| | ||| || |||
+            <br>
+            NO-CAP-84920492-VIBE
+          </div>
+          <div class="bg-red-500 text-white font-black text-[10px] px-2 py-0.5 border border-black uppercase rotate-[-3deg]">
+            DONOR: 🫀 YES
+          </div>
+        </div>
+      </div>
+
+      <!-- FUNKY STICKER BOX -->
+      <div class="w-full bg-white border-4 border-black p-4 hard-shadow">
+        <h4 class="font-black text-sm uppercase mb-2">Driver Perks Unlocked:</h4>
+        <ul class="text-xs font-bold space-y-1">
+          <li>✅ Aux Cable Dictator Privilege</li>
+          <li>✅ Unsolicited Parallel Parking Coaching</li>
+          <li>✅ Exemption from being the Designated Driver (delusional)</li>
+          <li>✅ Ability to complain about gas prices with 0 nuance</li>
+        </ul>
+      </div>
+
+      <!-- BANTER QUOTE -->
+      <div class="bg-[#00f0ff] border-3 border-black border-2 p-3 font-bold text-center text-xs hard-shadow-sm rotate-1">
+        “Parallel parking is literally just spatial mathematics and intuition, which is why I hit the curb at 15mph.”
+      </div>
+    </aside>
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    function updatePreview() {
+      const name = document.getElementById('input-name').value;
+      const handle = document.getElementById('input-handle').value;
+      const dob = document.getElementById('input-dob').value;
+      const whip = document.getElementById('input-whip').value;
+
+      document.getElementById('card-name').textContent = name || "YOUR NAME HERE";
+      document.getElementById('card-handle').textContent = handle ? handle : "@passenger_princess";
+      document.getElementById('card-dob').textContent = dob || "2006-04-20";
+      document.getElementById('card-whip').textContent = whip;
+    }
+
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const output = document.getElementById('card-mugshot');
+        output.src = reader.result;
+      };
+      if(event.target.files[0]) {
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    }
+
+    function submitForm() {
+      const name = document.getElementById('input-name').value;
+      alert(`🎉 VIBE CHECK PASSED, ${name.toUpperCase()}!\n\nYour application has been uploaded to the DMV mainframe.\nPlease wait 3-5 business eons for processing. Keep your hands on 10 and 2, bestie.`);
+    }
+  </script>
+</body>
+</html>
